@@ -1,0 +1,25 @@
+version: "3"
+
+services: 
+
+  db:
+    image: postgres
+    container_name: db-pets
+    env_file: .env
+  
+  pets:
+    container_name: pets
+    build: 
+      context: .
+    env_file: .env
+    command: python manage.py runserver 0.0.0.0:8000
+    ports: 
+        - "8000:8000"
+    volumes:
+      - .:/pets
+    depends_on: 
+      - db
+
+
+
+    
