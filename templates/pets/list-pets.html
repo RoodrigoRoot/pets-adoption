@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Pets
+{% endblock %}
+
+{% block content %}
+<style>
+  .meet{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5rem;
+    font-weight: bold;
+  }
+</style>
+
+<div class="p-5">
+  <h2 class="text-center meet">Meet our pets!</h2>
+</div>
+
+  <div class="card-group">
+   {% for pet in object_list %}   
+   <div class="col-3 mx-auto mt-3">
+    <div class="card" style="width: 350px;">
+      <img height="250" class="card-img" src="{{pet.photo.url}}" alt="Card image cap">
+      <div class="card-body">
+        <a href="{{pet.get_absolute_url}}"><h5 class="card-title text-center">{{pet.name}}</h5></a>
+        <p class="card-text">{{pet.description}}</p>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+  </div>
+{% endblock %}
